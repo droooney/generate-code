@@ -40,7 +40,7 @@ const generatedMap = code.generateMap();
 ##### CodeGenerator
 
 ```
-new CodeGenerator(options)
+new CodeGenerator(options: Options)
 ```
 
 * `options.filename` (required): filename for the sourcemap.
@@ -52,7 +52,7 @@ a sourcemap.
 ##### CodeGenerator#add
 
 ```
-add(string: chunk): this
+add(chunk: string): this
 ```
 
 Adds a `chunk` of code to the generated code.
@@ -67,9 +67,9 @@ code.add('fun(1, 2);');
 
 ```
 addWithMap(
-  string: chunk,
-  SourceMap: map,
-  (Location|number)?: offset
+  chunk: string,
+  map: SourceMap,
+  offset?: Location | number
 ): this
 ```
 
@@ -126,9 +126,9 @@ console.log(code.toString());
 
 ```
 addWithMapping(
-  string: chunk,
-  (Location|number)?: offset,
-  string?: name
+  chunk: string,
+  offset?: Location | number,
+  name?: string
 ): this
 ```
 
