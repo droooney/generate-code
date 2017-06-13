@@ -18,6 +18,7 @@ class CodeGenerator {
 
     this._code = '';
     this._source = options.sourceContent;
+    this._filename = options.filename;
     this._map = new SourceMapGenerator.fromSourceMap(
       new SourceMapConsumer({
         version: 3,
@@ -34,7 +35,7 @@ class CodeGenerator {
     this._inputSourceMap = !!_.get(options, 'inputSourceMap', null);
   }
 
-  _addMapping({ generated, original, source, name }) {
+  _addMapping({ generated, original, name }) {
     if (this._sourceMap) {
       this._map.addMapping({
         generated: {
@@ -45,7 +46,7 @@ class CodeGenerator {
           line: original.line + 1,
           column: original.column
         },
-        source,
+        source: this._filename,
         name
       });
     }
@@ -58,7 +59,6 @@ class CodeGenerator {
       const smc = new SourceMapConsumer(map);
 
       smc.eachMapping(({
-        source,
         generatedLine: genLine,
         generatedColumn: genCol,
         originalLine: origLine,
@@ -66,7 +66,6 @@ class CodeGenerator {
         name
       }) => {
         this._addMapping({
-          source,
           generated: {
             line: genLine - 1,
             column: genCol
@@ -144,7 +143,7 @@ class CodeGenerator {
     return this.add(code);
   }
 
-  addWithMapping(code, offset, { source, name } = {}) {
+  addWithMapping(code, offset, name) {
     const loc = this._getLastLocation();
 
     if (typeof offset === 'number') {
@@ -160,7 +159,6 @@ class CodeGenerator {
       ._addMapping({
         generated: loc,
         original: offset,
-        source,
         name
       })
       .add(code);

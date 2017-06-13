@@ -74,13 +74,8 @@ describe('CodeGenerator#', () => {
       });
 
       code.add('a\n');
-      code.addWithMapping('b\n', 1, {
-        source: 'test.js',
-        name: 'b'
-      });
-      code.addWithMapping('c', { line: 0, column: 2 }, {
-        source: 'test.js'
-      });
+      code.addWithMapping('b\n', 1, 'b');
+      code.addWithMapping('c', { line: 0, column: 2 });
 
       strictEqual(code.toString(), 'a\nb\nc');
       deepStrictEqual(transformMap(code.generateMap()), {

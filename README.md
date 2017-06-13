@@ -70,7 +70,7 @@ addWithMap(
   string: chunk,
   SourceMap: map,
   (Location|number)?: offset
-)
+): this
 ```
 
 Applies the `map` to the existing map (shifting it according to the
@@ -128,8 +128,8 @@ console.log(code.toString());
 addWithMapping(
   string: chunk,
   (Location|number)?: offset,
-  object?: description
-)
+  string?: name
+): this
 ```
 
 Applies the mapping to the existing map (shifting it according to the
@@ -140,7 +140,7 @@ Second optional parameter is the offset of the mappings relatively
 to the source. Can be a number or a `{ line, column }` object with
 0-indexed line.
 
-Third optional argument describes the mapping name and source.
+Third optional argument describes the mapping name.
 
 Example:
 
@@ -162,7 +162,7 @@ var b = {
 code.addWithMapping(
   '_c',
   { line: 2, column: 2 }, // where 'c' is located
-  { name: 'c', source: 'index.js' }
+  'c'
 );
 
 code.add(`: 1,
@@ -171,7 +171,7 @@ code.add(`: 1,
 code.addWithMapping(
   '_d',
   { line: 3, column: 2 }, // where 'd' is located
-  { name: 'd', source: 'index.js' }
+  'd'
 );
 
 code.add(`: 2
