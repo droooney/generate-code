@@ -22,7 +22,7 @@ export interface Location {
 
 export type Offset = Location | number
 
-export default class CodeGenerator {
+export = class CodeGenerator {
   public constructor(options: Options);
   public add(chunk: string): this;
   public addWithMap(chunk: string, map: SourceMap, offset?: Offset): this;
