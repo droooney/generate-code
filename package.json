@@ -1,6 +1,6 @@
 {
   "name": "generate-code",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "main": "lib/index.js",
   "typings": "index.d.ts",
   "devDependencies": {

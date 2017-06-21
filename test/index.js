@@ -91,6 +91,26 @@ describe('CodeGenerator#', () => {
       });
     });
   });
+  describe('getCurrentIndent()', () => {
+    it('should return current indent', () => {
+      const code = new CodeGenerator({
+        filename: 'test.js',
+        sourceContent: 'abc'
+      });
+
+      code.add('\na');
+
+      strictEqual(code.getCurrentIndent(), '');
+
+      code.add('\n  b');
+
+      strictEqual(code.getCurrentIndent(), '  ');
+
+      code.add('\n\tc');
+
+      strictEqual(code.getCurrentIndent(), '\t');
+    });
+  });
 });
 
 function transformMap(map) {

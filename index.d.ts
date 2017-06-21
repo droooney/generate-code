@@ -27,6 +27,7 @@ export = class CodeGenerator {
   public add(chunk: string): this;
   public addWithMap(chunk: string, map: SourceMap, offset?: Offset): this;
   public addWithMapping(chunk: string, offset?: Offset, name?: string): this;
+  public getCurrentIndent(): string;
   public generateMap(): SourceMap;
   public toString(): string;
 }

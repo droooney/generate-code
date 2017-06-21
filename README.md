@@ -187,6 +187,38 @@ console.log(code.toString());
 // };
 ```
 
+##### CodeGenerator#getCurrentIndent()
+
+```
+getCurrentIndent(): string
+```
+
+Returns current code indent.
+
+Example:
+
+```js
+const code = new CodeGenerator({
+  filename: 'index.js',
+  sourceContent: 'abc'
+});
+
+code.add('\na');
+
+code.toString();         // '\na'
+code.getCurrentIndent(); // ''
+
+code.add('\n  b');
+
+code.toString();         // '\na\n  b'
+code.getCurrentIndent(); // '  '
+
+code.add('\n\tc');
+
+code.toString();         // '\na\n  b\n\tc'
+code.getCurrentIndent(); // '\t'
+```
+
 ##### CodeGenerator#toString()
 
 ```

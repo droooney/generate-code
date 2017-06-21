@@ -164,6 +164,15 @@ class CodeGenerator {
       .add(code);
   }
 
+  getCurrentIndent() {
+    const currentLineStartIndex = this._genLines.indexForLocation({
+      line: this._genLines.locationForIndex(this._code.length).line,
+      column: 0
+    });
+
+    return this._code.slice(currentLineStartIndex).match(/^\s*/)[0];
+  }
+
   generateMap() {
     return this._sourceMap
       ? mergeMap(this._inputSourceMap, this._map.toJSON())
