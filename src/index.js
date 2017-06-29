@@ -121,13 +121,13 @@ class CodeGenerator {
     return this;
   }
 
-  addWithMap(code, map, offset) {
+  addWithMap(code, map, position) {
     const loc = this._getLastLocation();
 
-    if (typeof offset === 'number') {
-      offset = this._origLines.locationForIndex(offset);
-    } else if (!offset) {
-      offset = {
+    if (typeof position === 'number') {
+      position = this._origLines.locationForIndex(position);
+    } else if (!position) {
+      position = {
         line: 0,
         column: 0
       };
@@ -135,7 +135,7 @@ class CodeGenerator {
 
     if (map) {
       this
-        ._shiftOriginalMap(map, offset)
+        ._shiftOriginalMap(map, position)
         ._shiftGeneratedMap(map, loc)
         ._applyMap(map);
     }
@@ -143,13 +143,13 @@ class CodeGenerator {
     return this.add(code);
   }
 
-  addWithMapping(code, offset, name) {
+  addWithMapping(code, position, name) {
     const loc = this._getLastLocation();
 
-    if (typeof offset === 'number') {
-      offset = this._origLines.locationForIndex(offset);
-    } else if (!offset) {
-      offset = {
+    if (typeof position === 'number') {
+      position = this._origLines.locationForIndex(position);
+    } else if (!position) {
+      position = {
         line: null,
         column: null
       };
@@ -158,7 +158,7 @@ class CodeGenerator {
     return this
       ._addMapping({
         generated: loc,
-        original: offset,
+        original: position,
         name
       })
       .add(code);

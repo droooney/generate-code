@@ -18,8 +18,8 @@ const code = new CodeGenerator(options);
 code.add('var a, b;\n');
 code.addWithMapping(
   'var c;',
-  { line: 1, column: 0 },
-  { source: 'test.js', name: 'c' }
+  { line: 1, column: 10 },
+  'c'
 );
 
 const generatedCode = code.toString();
@@ -69,7 +69,7 @@ code.add('fun(1, 2);');
 addWithMap(
   chunk: string,
   map: SourceMap,
-  offset?: Location | number
+  position?: { line, number } | number
 ): this
 ```
 
@@ -77,7 +77,7 @@ Applies the `map` to the existing map (shifting it according to the
 current position in the generated code) and then adds the `chunk`
 of code.
 
-Third optional parameter is the offset of the mappings relatively
+Third optional parameter is the position of the mappings relatively
 to the source. Can be a number or a `{ line, column }` object with
 0-indexed line.
 
@@ -127,7 +127,7 @@ console.log(code.toString());
 ```
 addWithMapping(
   chunk: string,
-  offset?: Location | number,
+  position?: { line, number } | number,
   name?: string
 ): this
 ```
@@ -136,7 +136,7 @@ Applies the mapping to the existing map (shifting it according to the
 current position in the generated code) and then adds the `chunk`
 of code.
 
-Second optional parameter is the offset of the mappings relatively
+Second optional parameter is the position of the mapping relatively
 to the source. Can be a number or a `{ line, column }` object with
 0-indexed line.
 

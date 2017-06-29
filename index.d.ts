@@ -20,13 +20,13 @@ export interface Location {
   column: number
 }
 
-export type Offset = Location | number
+export type Position = Location | number
 
 export = class CodeGenerator {
   public constructor(options: Options);
   public add(chunk: string): this;
-  public addWithMap(chunk: string, map: SourceMap, offset?: Offset): this;
-  public addWithMapping(chunk: string, offset?: Offset, name?: string): this;
+  public addWithMap(chunk: string, map: SourceMap, position?: Position): this;
+  public addWithMapping(chunk: string, position?: Position, name?: string): this;
   public getCurrentIndent(): string;
   public generateMap(): SourceMap;
   public toString(): string;
