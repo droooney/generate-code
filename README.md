@@ -69,7 +69,7 @@ code.add('fun(1, 2);');
 addWithMap(
   chunk: string,
   map: SourceMap,
-  position?: { line, number } | number
+  position?: { line: number, column: number } | number
 ): this
 ```
 
@@ -127,7 +127,7 @@ console.log(code.toString());
 ```
 addWithMapping(
   chunk: string,
-  position?: { line, number } | number,
+  position?: { line: number, column: number } | number,
   name?: string
 ): this
 ```
